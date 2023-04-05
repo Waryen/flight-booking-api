@@ -1,10 +1,11 @@
 import express from 'express';
 import { ErrorMessage, prisma } from '../../utils';
+import { getDefaultLog } from '../../utils/DefaultLogging';
 
 const airports = express.Router();
 
 airports.get(`/`, async (req, res) => {
-  console.log('Get all airports');
+  getDefaultLog('Get all airports');
 
   const airportsCollection = await prisma.airport.findMany({});
 
@@ -12,7 +13,7 @@ airports.get(`/`, async (req, res) => {
 });
 
 airports.post(`/`, async (req, res) => {
-  console.log('Creating a new airport');
+  getDefaultLog('Creating a new airport');
 
   const airportName = req.body.name;
 
@@ -36,7 +37,7 @@ airports.post(`/`, async (req, res) => {
 
   const result = await prisma.airport.create({ data: { name: airportName } });
 
-  console.log('Successfully created an airport');
+  getDefaultLog('Successfully created an airport');
 
   return res.status(201).json(result);
 });
