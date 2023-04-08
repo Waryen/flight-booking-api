@@ -26,7 +26,7 @@ const bootstrap = () => {
   app.use(`/airports`, airports);
 
   app.listen(port, () => {
-    console.log(`Server listening on ${url}:${port} 🚀`);
+    console.log(`Server is up and running 🚀`);
   });
 };
 
