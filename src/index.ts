@@ -1,6 +1,5 @@
 import * as dotenv from 'dotenv';
 import express from 'express';
-import enforce from 'express-sslify';
 import { airports, health } from './routes';
 import cors from 'cors';
 import { authentication } from './middlewares';
@@ -13,7 +12,7 @@ const port = process.env.API_PORT;
 
 const bootstrap = () => {
   // middlewares
-  app.use(enforce.HTTPS({ trustProtoHeader: true }));
+  // app.use(enforce.HTTPS({ trustProtoHeader: true }));
   app.use(express.json());
   app.use(cors());
 
