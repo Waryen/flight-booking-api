@@ -21,7 +21,7 @@ A Node.js API to manage flight bookings.
 - PostgreSQL
 - TypeScript
 
-## Environment variables
+## Environment variables example
 - API_PORT=9000
-- ANON_KEY=some_random_key
-- DATABASE_URL=file:./dev.bd
+- ANON_KEY=abcdef12345!@#
+- DATABASE_URL=postgres://jonathan@localhost:5432/jonathan
