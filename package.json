@@ -4,10 +4,10 @@
   "description": "A flight booking management API service",
   "main": "./dist/index.js",
   "scripts": {
-    "format": "prettier ./src/**/* --write",
-    "build": "esbuild ./src/index.ts --bundle --minify --platform=node --target=node16.20 --outfile=./dist/index.js",
+    "format": "npx prettier ./src/**/* --write",
+    "build": "npx esbuild ./src/index.ts --bundle --minify --platform=node --target=node16.20 --outfile=./dist/index.js",
     "start": "npm run build && node ./dist/index.js",
-    "prepare": "husky install"
+    "prepare": "npx husky install"
   },
   "keywords": [
     "node",
