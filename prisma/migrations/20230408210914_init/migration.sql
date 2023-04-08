@@ -1,7 +1,9 @@
 -- CreateTable
 CREATE TABLE "Airport" (
-    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    "name" TEXT NOT NULL
+    "id" SERIAL NOT NULL,
+    "name" TEXT NOT NULL,
+
+    CONSTRAINT "Airport_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateIndex

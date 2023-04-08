@@ -18,7 +18,7 @@ A Node.js API to manage flight bookings.
 - Node.js
 - Express.js
 - Prisma
-- SQLite
+- PostgreSQL
 - TypeScript
 
 ## Environment variables
