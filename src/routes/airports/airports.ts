@@ -1,6 +1,5 @@
 import express from 'express';
-import { ErrorMessage, prisma } from '../../utils';
-import { getDefaultLog } from '../../utils/DefaultLogging';
+import { ErrorMessage, getDefaultLog, prisma } from '../../utils';
 
 const airports = express.Router();
 
@@ -18,8 +17,8 @@ airports.post(`/`, async (req, res) => {
   const airportName = req.body.name;
 
   if (!airportName) {
-    const error = new ErrorMessage(400, 'You must provide a valid name`');
-    console.log(error.getErrorMessage());
+    const error = new ErrorMessage(400, 'You must provide a valid name');
+    error.consoleErrorMessage();
     return res.status(400).json(error.getErrorMessage());
   }
 
@@ -31,7 +30,7 @@ airports.post(`/`, async (req, res) => {
 
   if (alreadyExists) {
     const error = new ErrorMessage(400, 'This airport already exists');
-    console.log(error.getErrorMessage());
+    error.consoleErrorMessage();
     return res.status(400).json(error.getErrorMessage());
   }
 

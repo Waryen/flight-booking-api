@@ -1,2 +1,3 @@
 export * from './prisma.init';
-export * from './errorMessage';
+export * from './ErrorMessage';
+export * from './DefaultLog';
