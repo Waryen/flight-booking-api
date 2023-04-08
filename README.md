@@ -7,7 +7,7 @@ A Node.js API to manage flight bookings.
 - Fill required environment variables
 - run `npm install` to install the dependencies
 - run `npm run build` to build the service
-- run `npm start` to start the service
+- run `npm start` to build and start the service
 
 ## What does this service can do?
 - Retrieve a collection of all registered airports
@@ -22,7 +22,6 @@ A Node.js API to manage flight bookings.
 - TypeScript
 
 ## Environment variables
-- API_URL=http://localhost (optional)
 - API_PORT=9000
 - ANON_KEY=some_random_key
 - DATABASE_URL=file:./dev.bd

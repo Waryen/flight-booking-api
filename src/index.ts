@@ -7,7 +7,6 @@ import { authentication } from './middlewares';
 dotenv.config();
 
 const app = express();
-const url = process.env.API_URL;
 const port = process.env.API_PORT;
 
 const bootstrap = () => {
