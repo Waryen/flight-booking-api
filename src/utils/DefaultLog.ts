@@ -1,8 +1,9 @@
 /**
  * @description Default logging method of the server
- * @param message string to log in the console
+ * @param {number} status code
+ * @param {string} message message to log in the console
  */
-export function getDefaultLog(message: string) {
+export function getDefaultLog(status: number, message: string) {
   const date = new Date().toISOString();
-  console.log(`[${date}]: ${message}`);
+  console.log(`[${date}]: ${status} - ${message}`);
 }

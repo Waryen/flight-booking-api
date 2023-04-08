@@ -22,6 +22,7 @@ A Node.js API to manage flight bookings.
 - TypeScript
 
 ## Environment variables
-- API_URL = http://localhost (optional)
-- API_PORT = 9000
-- DATABASE_URL = 'file:./dev.bd'
+- API_URL=http://localhost (optional)
+- API_PORT=9000
+- ANON_KEY=some_random_key
+- DATABASE_URL=file:./dev.bd

@@ -4,7 +4,7 @@ import { ErrorMessage, getDefaultLog, prisma } from '../../utils';
 const airports = express.Router();
 
 airports.get(`/`, async (req, res) => {
-  getDefaultLog('Get all airports');
+  getDefaultLog(200, 'Get all airports');
 
   const airportsCollection = await prisma.airport.findMany({});
 
@@ -12,7 +12,7 @@ airports.get(`/`, async (req, res) => {
 });
 
 airports.post(`/`, async (req, res) => {
-  getDefaultLog('Creating a new airport');
+  getDefaultLog(200, 'Creating a new airport');
 
   const airportName = req.body.name;
 
@@ -36,7 +36,7 @@ airports.post(`/`, async (req, res) => {
 
   const result = await prisma.airport.create({ data: { name: airportName } });
 
-  getDefaultLog('Successfully created an airport');
+  getDefaultLog(201, 'Successfully created an airport');
 
   return res.status(201).json(result);
 });
