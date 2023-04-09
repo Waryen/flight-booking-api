@@ -10,20 +10,20 @@ register.post(`/`, async (req, res) => {
   // check if the body is valid
   if (!email || !password || !firstname || !lastname) {
     const errorMessage = new GenericMessage(
-      400,
+      422,
       'Unable to register the user',
       'Missing or malformed information in the body request',
     );
     errorMessage.consoleMessage();
-    return res.status(400).json(errorMessage.getMessage());
+    return res.status(422).json(errorMessage.getMessage());
   }
 
   // check if the user already exist
   const existingUser = await prisma.user.findUnique({ where: { email } });
   if (existingUser) {
-    const errorMessage = new GenericMessage(400, 'Unable to register the user');
+    const errorMessage = new GenericMessage(409, 'Unable to register the user');
     errorMessage.consoleMessage();
-    return res.status(400).json(errorMessage.getMessage());
+    return res.status(409).json(errorMessage.getMessage());
   }
 
   // create the user and his access token
