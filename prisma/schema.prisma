@@ -14,3 +14,11 @@ model Airport {
   id   Int    @id @default(autoincrement())
   name String @unique
 }
+
+model User {
+  id        Int    @id @default(autoincrement())
+  email     String @unique
+  firstname String
+  lastname  String
+  password  String
+}

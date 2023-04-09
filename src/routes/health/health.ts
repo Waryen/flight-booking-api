@@ -1,10 +1,10 @@
 import express from 'express';
-import { getDefaultLog } from '../../utils';
+import { GenericMessage } from '../../utils';
 
 const health = express.Router();
 
 health.get(`/`, (req, res) => {
-  getDefaultLog(200, 'Get health status');
+  new GenericMessage(200, 'Get health status').consoleMessage();
 
   res.status(200).json({ health: `up`, date: new Date().toString() });
 });

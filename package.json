@@ -5,9 +5,10 @@
   "main": "./dist/index.js",
   "scripts": {
     "format": "npx prettier ./src/**/* --write",
-    "build": "npx esbuild ./src/index.ts --bundle --minify --platform=node --target=node16.20 --outfile=./dist/index.js",
-    "start": "npm run build && node ./dist/index.js",
-    "prepare": "npx husky install"
+    "build": "npx esbuild src/main.ts --bundle --minify --platform=node --target=node16.20 --outfile=./dist/index.js",
+    "start": "node ./dist/index.js",
+    "prepare": "npx husky install",
+    "generate:key": "node src/utils/generate-private-key.js"
   },
   "keywords": [
     "node",
@@ -27,6 +28,7 @@
     "@types/cors": "^2.8.13",
     "@types/express": "^4.17.17",
     "@types/express-sslify": "^1.2.2",
+    "@types/jsonwebtoken": "^9.0.1",
     "@types/node": "^18.15.11",
     "dotenv": "^16.0.3",
     "esbuild": "^0.17.15",
@@ -41,7 +43,8 @@
     "@prisma/client": "^4.12.0",
     "cors": "^2.8.5",
     "express": "^4.18.2",
-    "express-sslify": "^1.2.0"
+    "express-sslify": "^1.2.0",
+    "jsonwebtoken": "^9.0.0"
   },
   "volta": {
     "node": "16.20.0"
@@ -50,6 +53,6 @@
     "node": "16.20.0"
   },
   "lint-staged": {
-    "*.ts": "prettier --write"
+    "*.{js,ts}": "prettier --write"
   }
 }

@@ -1,29 +1,31 @@
 import * as dotenv from 'dotenv';
 import express from 'express';
-import { airports, health } from './routes';
 import cors from 'cors';
-import { authentication } from './middlewares';
+import { airports, health, login, register } from './routes';
+import { verifyAccessToken } from './middlewares';
 
 dotenv.config();
-
 const app = express();
-const port = process.env.API_PORT;
+const port = process.env.API_PORT!;
 
 const bootstrap = () => {
-  // middlewares
+  // general middlewares
   // app.use(enforce.HTTPS({ trustProtoHeader: true }));
   app.use(express.json());
   app.use(cors());
 
   // public routes
   app.use(`/`, health);
+  app.use(`/register`, register);
+  app.use(`/login`, login);
 
-  // authentication middleware
-  app.use(authentication);
+  // verify jwt middleware, must be used before every private routes
+  app.use(verifyAccessToken);
 
   // private routes
   app.use(`/airports`, airports);
 
+  // start the server on a specific port
   app.listen(port, () => {
     console.log(`Server is up and running 🚀`);
   });
