@@ -8,7 +8,6 @@ await esbuild
     bundle: true,
     platform: 'node',
     target: 'node16.20',
-    external: ['mock-aws-s3', 'aws-sdk', 'nock'],
   })
   .catch((e) => {
     console.error(e);
