@@ -1,7 +1,7 @@
 import * as dotenv from 'dotenv';
 import express from 'express';
 import cors from 'cors';
-import { airports, health, login, register } from './routes';
+import { airports, health, invitations, login, register } from './routes';
 import { verifyAccessToken } from './middlewares';
 
 dotenv.config();
@@ -18,6 +18,7 @@ const bootstrap = () => {
   app.use(`/`, health);
   app.use(`/register`, register);
   app.use(`/login`, login);
+  app.use(`/invitations`, invitations);
 
   // verify jwt middleware, must be used before every private routes
   app.use(verifyAccessToken);

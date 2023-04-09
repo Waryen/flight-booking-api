@@ -8,7 +8,8 @@
     "build": "npx esbuild src/main.ts --bundle --minify --platform=node --target=node16.20 --outfile=./dist/index.js",
     "start": "node ./dist/index.js",
     "prepare": "npx husky install",
-    "generate:key": "node src/utils/generate-private-key.js"
+    "generate:key": "ts-node ./src/utils/generate-private-key.ts",
+    "db:clear": "ts-node ./prisma/clear.ts"
   },
   "keywords": [
     "node",
@@ -54,5 +55,8 @@
   },
   "lint-staged": {
     "*.{js,ts}": "prettier --write"
+  },
+  "prisma": {
+    "seed": "ts-node ./prisma/seed.ts"
   }
 }

@@ -10,15 +10,27 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// models
+
 model Airport {
   id   Int    @id @default(autoincrement())
   name String @unique
 }
 
 model User {
-  id        Int    @id @default(autoincrement())
-  email     String @unique
+  id        Int              @id @default(autoincrement())
+  email     String           @unique
   firstname String
   lastname  String
   password  String
+  code      String?
+  status    InvitationStatus @default(PENDING)
+}
+
+// enums
+
+enum InvitationStatus {
+  PENDING
+  EXPIRED
+  VERIFIED
 }

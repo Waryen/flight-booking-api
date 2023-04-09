@@ -1,6 +1,8 @@
 import express from 'express';
 import { GenericMessage, prisma } from '../../utils';
 import { createAccessToken } from '../../middlewares';
+import * as crypto from 'crypto';
+import { InvitationStatus } from '@prisma/client';
 
 const register = express.Router();
 
@@ -26,9 +28,19 @@ register.post(`/`, async (req, res) => {
     return res.status(409).json(errorMessage.getMessage());
   }
 
-  // create the user and his access token
+  // TODO hash password
+
+  // create the user and his access token and his invitations code
+  const code = crypto.randomBytes(3).toString('hex');
   const user = await prisma.user.create({
-    data: { email, password, firstname, lastname },
+    data: {
+      email,
+      password,
+      firstname,
+      lastname,
+      code,
+      status: InvitationStatus.PENDING,
+    },
   });
   const accessToken = createAccessToken(user);
 
