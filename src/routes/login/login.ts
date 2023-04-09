@@ -1,3 +1,4 @@
+import * as bcrypt from 'bcryptjs';
 import express from 'express';
 import { GenericMessage, prisma } from '../../utils';
 import { createAccessToken } from '../../middlewares';
@@ -16,10 +17,8 @@ login.post(`/`, async (req, res) => {
     return res.status(401).json(errorMessage.getMessage());
   }
 
-  // TODO decrypt password
-
   // check if the password is valid
-  const isPasswordValid = user.password === password;
+  const isPasswordValid = await bcrypt.compare(password, user.password);
 
   if (!isPasswordValid) {
     const errorMessage = new GenericMessage(401, 'Invalid password');

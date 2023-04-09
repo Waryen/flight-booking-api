@@ -1,7 +1,8 @@
-import express from 'express';
-import { GenericMessage, prisma } from '../../utils';
-import { createAccessToken } from '../../middlewares';
 import * as crypto from 'crypto';
+import * as bcrypt from 'bcryptjs';
+import express from 'express';
+import { GenericMessage, prisma, saltRounds } from '../../utils';
+import { createAccessToken } from '../../middlewares';
 import { InvitationStatus } from '@prisma/client';
 
 const register = express.Router();
@@ -28,14 +29,14 @@ register.post(`/`, async (req, res) => {
     return res.status(409).json(errorMessage.getMessage());
   }
 
-  // TODO hash password
+  const hashedPassword = await bcrypt.hash(password, saltRounds);
 
   // create the user and his access token and his invitations code
   const code = crypto.randomBytes(3).toString('hex');
   const user = await prisma.user.create({
     data: {
       email,
-      password,
+      password: hashedPassword,
       firstname,
       lastname,
       code,
