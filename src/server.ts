@@ -1,7 +1,14 @@
 import * as dotenv from 'dotenv';
 import express from 'express';
 import cors from 'cors';
-import { airports, health, invitations, login, register } from './routes';
+import {
+  airports,
+  companies,
+  health,
+  invitations,
+  login,
+  register,
+} from './routes';
 import { verifyAccessToken } from './middlewares';
 
 dotenv.config();
@@ -25,6 +32,7 @@ const bootstrap = () => {
 
   // private routes
   app.use(`/airports`, airports);
+  app.use(`/companies`, companies);
 
   // start the server on a specific port
   app.listen(port, () => {

@@ -1,7 +1,7 @@
 import * as dotenv from 'dotenv';
 import * as jwt from 'jsonwebtoken';
 import { RequestHandler } from 'express';
-import { GenericMessage, prisma } from '../utils';
+import { GenericMessage } from '../utils';
 import { InvitationStatus, User } from '@prisma/client';
 
 dotenv.config();
@@ -31,17 +31,9 @@ export const verifyAccessToken: RequestHandler = (req, res, next) => {
       return res.status(401).json(errorMessage.getMessage());
     }
 
-    // check if the user has been verified
-    const { id } = decoded as User;
-    const user = await prisma.user.findUnique({ where: { id: Number(id) } });
-
-    if (!user) {
-      const errorMessage = new GenericMessage(404, "This user doesn't exist");
-      errorMessage.consoleMessage();
-      return res.status(404).json(errorMessage.getMessage());
-    }
-
-    if (user.status !== InvitationStatus.VERIFIED) {
+    // check if the user has not been verified yet
+    const { status } = decoded as User;
+    if (status !== InvitationStatus.VERIFIED) {
       const errorMessage = new GenericMessage(
         401,
         'This user has not been verified yet',
